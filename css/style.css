@@ -1,9 +1,61 @@
 /* Gruppe: WI_25B_Gruppe_1 */
 
+:root {
+    --color-primary: #8b4513;
+    --color-accent: #f2c14e;
+    --color-background: #fdf8f0;
+    --color-card: #ffffff;
+    --color-text: #2b2118;
+    --color-text-light: #6b5d50;
+
+    --font-main: "Segoe UI", Arial, sans-serif;
+    --font-size-normal: 1rem;
+    --font-size-large: 2rem;
+
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 32px;
+    --border-radius: 8px;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+.site-header {
+    padding: var(--spacing-large) var(--spacing-medium);
+    text-align: center;
+    color: #ffffff;
+    background-color: var(--color-primary);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: var(--font-size-large);
+}
+
+.site-slogan {
+    margin: var(--spacing-small) 0 0;
+    color: var(--color-accent);
+}
+
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--spacing-large) var(--spacing-medium);
+}
+
+.site-footer {
+    padding: var(--spacing-medium);
+    text-align: center;
+    color: var(--color-text-light);
 }
