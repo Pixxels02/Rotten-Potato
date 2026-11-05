@@ -59,3 +59,24 @@ body {
     text-align: center;
     color: var(--color-text-light);
 }
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-medium);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.movie-card {
+    padding: var(--spacing-medium);
+    background-color: var(--color-card);
+    border: 1px solid #e0d6c8;
+    border-radius: var(--border-radius);
+}
+
+.movie-card h3 {
+    margin: 0 0 var(--spacing-small);
+    color: var(--color-primary);
+}
