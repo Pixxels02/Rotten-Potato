@@ -22,6 +22,12 @@ function getRandomNumber(max) {
     return Math.floor(Math.random() * max);
 }
 
+function getUnwatchedMovies(watchlist) {
+    return watchlist.filter(function (movie) {
+        return !movie.watched;
+    });
+}
+
 function showRandomPick() {
     const watchlist = loadWatchlist();
 
@@ -30,8 +36,15 @@ function showRandomPick() {
         return;
     }
 
-    const randomIndex = getRandomNumber(watchlist.length);
-    const pickedMovie = watchlist[randomIndex];
+    const unwatchedMovies = getUnwatchedMovies(watchlist);
+
+    if (unwatchedMovies.length === 0) {
+        randomResult.textContent = "Ihr habt schon alles geschaut! Fügt neue Titel hinzu.";
+        return;
+    }
+
+    const randomIndex = getRandomNumber(unwatchedMovies.length);
+    const pickedMovie = unwatchedMovies[randomIndex];
 
     randomResult.textContent = `Heute schaut ihr: ${pickedMovie.title} (${pickedMovie.type}, ${pickedMovie.genre})`;
 }
