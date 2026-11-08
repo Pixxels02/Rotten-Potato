@@ -81,6 +81,44 @@ body {
     color: var(--color-primary);
 }
 
+.random-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-medium);
+    margin-bottom: var(--spacing-large);
+    padding: var(--spacing-large) var(--spacing-medium);
+    text-align: center;
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+}
+
+.random-section h2 {
+    margin: 0;
+}
+
+.random-button {
+    padding: var(--spacing-small) var(--spacing-large);
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    font-weight: bold;
+    color: var(--color-text);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.random-button:hover {
+    background-color: #e0a92e;
+}
+
+.random-result {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+}
+
 @media (max-width: 900px) {
     .movie-grid {
         grid-template-columns: repeat(2, 1fr);
