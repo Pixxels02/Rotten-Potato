@@ -60,6 +60,49 @@
 
         <section class="watchlist-section">
             <h2>Eure Watchlist</h2>
+
+            <div class="toolbar">
+                <div class="toolbar-field">
+                    <label for="search-input">Suche nach Titel</label>
+                    <input type="search" id="search-input" placeholder="Titel suchen…">
+                </div>
+
+                <div class="toolbar-field">
+                    <label for="filter-type">Typ</label>
+                    <select id="filter-type">
+                        <option value="alle">Alle</option>
+                        <option value="Film">Film</option>
+                        <option value="Serie">Serie</option>
+                    </select>
+                </div>
+
+                <div class="toolbar-field">
+                    <label for="filter-status">Status</label>
+                    <select id="filter-status">
+                        <option value="alle">Alle</option>
+                        <option value="geschaut">Geschaut</option>
+                        <option value="offen">Noch offen</option>
+                    </select>
+                </div>
+
+                <div class="toolbar-field">
+                    <label for="filter-genre">Genre</label>
+                    <select id="filter-genre">
+                        <option value="alle">Alle</option>
+                    </select>
+                </div>
+
+                <div class="toolbar-field">
+                    <label for="sort-select">Sortieren nach</label>
+                    <select id="sort-select">
+                        <option value="title-asc">Titel (A–Z)</option>
+                        <option value="title-desc">Titel (Z–A)</option>
+                        <option value="rating-desc">Bewertung (beste zuerst)</option>
+                        <option value="rating-asc">Bewertung (schlechteste zuerst)</option>
+                    </select>
+                </div>
+            </div>
+
             <ul id="movie-list" class="movie-grid">
             </ul>
         </section>
