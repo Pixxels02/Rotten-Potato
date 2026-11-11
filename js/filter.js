@@ -4,6 +4,7 @@ const filterTypeSelect = document.getElementById("filter-type");
 const filterStatusSelect = document.getElementById("filter-status");
 const filterGenreSelect = document.getElementById("filter-genre");
 const searchInput = document.getElementById("search-input");
+const sortSelect = document.getElementById("sort-select");
 
 function getUniqueGenres(watchlist) {
     const genres = [];
@@ -86,6 +87,41 @@ function filterBySearch(watchlist, searchText) {
     });
 }
 
+function sortMovies(watchlist, sortOption) {
+    const sortedMovies = watchlist.slice();
+
+    sortedMovies.sort(function (a, b) {
+        if (sortOption === "title-asc") {
+            return a.title.localeCompare(b.title);
+        }
+
+        if (sortOption === "title-desc") {
+            return b.title.localeCompare(a.title);
+        }
+
+        // Titel ohne Bewertung kommen immer ans Ende
+        if (a.rating === null && b.rating === null) {
+            return 0;
+        }
+
+        if (a.rating === null) {
+            return 1;
+        }
+
+        if (b.rating === null) {
+            return -1;
+        }
+
+        if (sortOption === "rating-desc") {
+            return b.rating - a.rating;
+        }
+
+        return a.rating - b.rating;
+    });
+
+    return sortedMovies;
+}
+
 function applyFilters() {
     const watchlist = loadWatchlist();
 
@@ -95,6 +131,7 @@ function applyFilters() {
     visibleMovies = filterByStatus(visibleMovies, filterStatusSelect.value);
     visibleMovies = filterByGenre(visibleMovies, filterGenreSelect.value);
     visibleMovies = filterBySearch(visibleMovies, searchInput.value);
+    visibleMovies = sortMovies(visibleMovies, sortSelect.value);
 
     renderMovieCards(visibleMovies);
 }
@@ -103,5 +140,6 @@ filterTypeSelect.addEventListener("change", applyFilters);
 filterStatusSelect.addEventListener("change", applyFilters);
 filterGenreSelect.addEventListener("change", applyFilters);
 searchInput.addEventListener("input", applyFilters);
+sortSelect.addEventListener("change", applyFilters);
 
-populateGenreOptions(loadWatchlist());
+applyFilters();
