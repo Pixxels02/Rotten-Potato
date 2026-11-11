@@ -234,6 +234,22 @@ body {
     color: var(--color-text-light);
 }
 
+.delete-button {
+    margin-top: var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-medium);
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    color: var(--color-text);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #e0a92e;
+}
+
 @media (max-width: 900px) {
     .movie-grid {
         grid-template-columns: repeat(2, 1fr);
