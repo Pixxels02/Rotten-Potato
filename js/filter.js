@@ -134,6 +134,7 @@ function applyFilters() {
     visibleMovies = sortMovies(visibleMovies, sortSelect.value);
 
     renderMovieCards(visibleMovies);
+    updateStatistics(watchlist);
 }
 
 filterTypeSelect.addEventListener("change", applyFilters);
