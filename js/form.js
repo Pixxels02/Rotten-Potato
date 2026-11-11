@@ -34,9 +34,9 @@ function resetMovieForm() {
 }
 
 function refreshMovieList() {
-    // renderMovieCards() kommt von Mert
-    if (typeof renderMovieCards === "function") {
-        renderMovieCards();
+    // applyFilters() kommt von Jannick (filter.js)
+    if (typeof applyFilters === "function") {
+        applyFilters();
     }
 }
 

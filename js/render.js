@@ -44,7 +44,7 @@ function deleteMovieEntry(id) {
     }
 
     saveWatchlist(newWatchlist);
-    renderMovieCards();
+    applyFilters();
 }
 
 renderMovieCards();
