@@ -16,3 +16,13 @@ function createMovieEntry(title, type, genre, episodes) {
         rating: null
     };
 }
+
+function saveWatchlist(watchlist) {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+}
+
+function addMovieEntry(movie) {
+    const watchlist = loadWatchlist();
+    watchlist.push(movie);
+    saveWatchlist(watchlist);
+}
