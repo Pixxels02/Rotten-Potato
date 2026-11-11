@@ -16,6 +16,18 @@ function toggleEpisodesField() {
     }
 }
 
+function validateForm(title, type, genre, episodes) {
+    if (title === "" || genre === "") {
+        return false;
+    }
+
+    if (type === "Serie" && (!Number.isInteger(episodes) || episodes < 1)) {
+        return false;
+    }
+
+    return true;
+}
+
 function resetMovieForm() {
     movieForm.reset();
     toggleEpisodesField();
@@ -35,6 +47,11 @@ function handleFormSubmit(event) {
     const type = typeSelect.value;
     const genre = genreInput.value.trim();
     const episodes = Number(episodesInput.value);
+
+    if (!validateForm(title, type, genre, episodes)) {
+        formMessage.textContent = "Bitte füllt alle Pflichtfelder aus.";
+        return;
+    }
 
     const newMovie = createMovieEntry(title, type, genre, episodes);
     addMovieEntry(newMovie);
