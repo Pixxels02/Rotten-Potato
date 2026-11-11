@@ -8,6 +8,7 @@
     <title>Rotten Potato - Watchlist Planner</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/storage.js" defer></script>
+    <script src="js/form.js" defer></script>
     <script src="js/script.js" defer></script>
 </head>
 <body>
@@ -19,6 +20,35 @@
     <main class="main-content">
         <section class="add-section">
             <h2>Neuen Titel hinzufügen</h2>
+            <form id="movie-form" class="movie-form">
+                <div class="form-field">
+                    <label for="title-input">Titel</label>
+                    <input type="text" id="title-input" maxlength="100">
+                </div>
+
+                <div class="form-field">
+                    <label for="type-select">Typ</label>
+                    <select id="type-select">
+                        <option value="Film">Film</option>
+                        <option value="Serie">Serie</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="genre-input">Genre</label>
+                    <input type="text" id="genre-input" maxlength="50">
+                </div>
+
+                <div class="form-field hidden" id="episodes-field">
+                    <label for="episodes-input">Anzahl Folgen</label>
+                    <input type="number" id="episodes-input" min="1" value="1">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submit-button" class="form-button">Hinzufügen</button>
+                    <p id="form-message" class="form-message"></p>
+                </div>
+            </form>
         </section>
 
         <section class="random-section">

@@ -1,0 +1,48 @@
+// Gruppe: WI_25B_Gruppe_1
+
+const movieForm = document.getElementById("movie-form");
+const titleInput = document.getElementById("title-input");
+const typeSelect = document.getElementById("type-select");
+const genreInput = document.getElementById("genre-input");
+const episodesField = document.getElementById("episodes-field");
+const episodesInput = document.getElementById("episodes-input");
+const formMessage = document.getElementById("form-message");
+
+function toggleEpisodesField() {
+    if (typeSelect.value === "Serie") {
+        episodesField.classList.remove("hidden");
+    } else {
+        episodesField.classList.add("hidden");
+    }
+}
+
+function resetMovieForm() {
+    movieForm.reset();
+    toggleEpisodesField();
+}
+
+function refreshMovieList() {
+    // renderMovieCards() kommt von Mert
+    if (typeof renderMovieCards === "function") {
+        renderMovieCards();
+    }
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const title = titleInput.value.trim();
+    const type = typeSelect.value;
+    const genre = genreInput.value.trim();
+    const episodes = Number(episodesInput.value);
+
+    const newMovie = createMovieEntry(title, type, genre, episodes);
+    addMovieEntry(newMovie);
+
+    resetMovieForm();
+    refreshMovieList();
+    formMessage.textContent = title + " wurde zu eurer Watchlist hinzugefügt.";
+}
+
+movieForm.addEventListener("submit", handleFormSubmit);
+typeSelect.addEventListener("change", toggleEpisodesField);
