@@ -225,6 +225,15 @@ body {
     border-radius: var(--border-radius);
 }
 
+.movie-card:hover {
+    border-color: var(--color-primary);
+}
+
+.movie-info {
+    margin: 0;
+    color: var(--color-text-light);
+}
+
 @media (max-width: 900px) {
     .movie-grid {
         grid-template-columns: repeat(2, 1fr);

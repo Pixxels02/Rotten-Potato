@@ -15,6 +15,7 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         title.innerText = movie.title;
 
         const info = document.createElement("p");
+        info.className = "movie-info";
         info.innerText = `${movie.type} | ${movie.genre}`;
 
         card.appendChild(title);
