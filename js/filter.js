@@ -3,6 +3,7 @@
 const filterTypeSelect = document.getElementById("filter-type");
 const filterStatusSelect = document.getElementById("filter-status");
 const filterGenreSelect = document.getElementById("filter-genre");
+const searchInput = document.getElementById("search-input");
 
 function getUniqueGenres(watchlist) {
     const genres = [];
@@ -73,6 +74,18 @@ function filterByGenre(watchlist, genre) {
     });
 }
 
+function filterBySearch(watchlist, searchText) {
+    const search = searchText.trim().toLowerCase();
+
+    if (search === "") {
+        return watchlist;
+    }
+
+    return watchlist.filter(function (movie) {
+        return movie.title.toLowerCase().includes(search);
+    });
+}
+
 function applyFilters() {
     const watchlist = loadWatchlist();
 
@@ -81,6 +94,7 @@ function applyFilters() {
     let visibleMovies = filterByType(watchlist, filterTypeSelect.value);
     visibleMovies = filterByStatus(visibleMovies, filterStatusSelect.value);
     visibleMovies = filterByGenre(visibleMovies, filterGenreSelect.value);
+    visibleMovies = filterBySearch(visibleMovies, searchInput.value);
 
     renderMovieCards(visibleMovies);
 }
@@ -88,5 +102,6 @@ function applyFilters() {
 filterTypeSelect.addEventListener("change", applyFilters);
 filterStatusSelect.addEventListener("change", applyFilters);
 filterGenreSelect.addEventListener("change", applyFilters);
+searchInput.addEventListener("input", applyFilters);
 
 populateGenreOptions(loadWatchlist());
