@@ -2,9 +2,7 @@
 
 const movieList = document.getElementById("movie-list");
 
-function renderMovieCards() {
-    const watchlist = loadWatchlist();
-
+function renderMovieCards(watchlist = loadWatchlist()) {
     movieList.innerHTML = "";
 
     for (let i = 0; i < watchlist.length; i++) {
