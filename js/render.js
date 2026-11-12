@@ -38,6 +38,43 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         watchedLabel.appendChild(watchedCheckbox);
         watchedLabel.appendChild(watchedText);
 
+        const ratingField = document.createElement("div");
+        ratingField.className = "rating-field";
+
+        const ratingLabel = document.createElement("label");
+        ratingLabel.className = "rating-label";
+
+        const ratingText = document.createElement("span");
+        ratingText.innerText = "Bewertung";
+
+        const ratingInput = document.createElement("input");
+        ratingInput.type = "number";
+        ratingInput.min = "1";
+        ratingInput.max = "10";
+        ratingInput.placeholder = "1-10";
+
+        if (movie.rating !== null) {
+            ratingInput.value = movie.rating;
+        }
+
+        ratingLabel.appendChild(ratingText);
+        ratingLabel.appendChild(ratingInput);
+
+        const ratingButton = document.createElement("button");
+        ratingButton.type = "button";
+        ratingButton.className = "rating-button";
+        ratingButton.innerText = "Speichern";
+
+        const ratingMessage = document.createElement("p");
+        ratingMessage.className = "rating-message";
+
+        ratingButton.addEventListener("click", function () {
+            saveRating(movie.id, ratingInput.value, ratingMessage);
+        });
+
+        ratingField.appendChild(ratingLabel);
+        ratingField.appendChild(ratingButton);
+
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
         deleteButton.className = "delete-button";
@@ -49,6 +86,8 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         card.appendChild(title);
         card.appendChild(info);
         card.appendChild(watchedLabel);
+        card.appendChild(ratingField);
+        card.appendChild(ratingMessage);
         card.appendChild(deleteButton);
         movieList.appendChild(card);
     }
@@ -60,6 +99,26 @@ function toggleWatched(id) {
     for (let i = 0; i < watchlist.length; i++) {
         if (watchlist[i].id === id) {
             watchlist[i].watched = !watchlist[i].watched;
+        }
+    }
+
+    saveWatchlist(watchlist);
+    applyFilters();
+}
+
+function saveRating(id, value, message) {
+    const rating = Number(value);
+
+    if (value === "" || rating < 1 || rating > 10 || rating % 1 !== 0) {
+        message.innerText = "Bitte eine ganze Zahl von 1 bis 10 eingeben.";
+        return;
+    }
+
+    const watchlist = loadWatchlist();
+
+    for (let i = 0; i < watchlist.length; i++) {
+        if (watchlist[i].id === id) {
+            watchlist[i].rating = rating;
         }
     }
 

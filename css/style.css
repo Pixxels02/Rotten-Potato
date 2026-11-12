@@ -311,6 +311,49 @@ body {
     background-color: var(--color-background);
 }
 
+.rating-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-small);
+    margin-top: var(--spacing-small);
+}
+
+.rating-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+}
+
+.rating-label input {
+    width: 70px;
+    padding: var(--spacing-small);
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    border: 1px solid #e0d6c8;
+    border-radius: var(--border-radius);
+}
+
+.rating-button {
+    padding: var(--spacing-small) var(--spacing-medium);
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    color: var(--color-text);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.rating-button:hover {
+    background-color: #e0a92e;
+}
+
+.rating-message {
+    margin: 0;
+    color: var(--color-primary);
+}
+
 @media (max-width: 900px) {
     .movie-grid {
         grid-template-columns: repeat(2, 1fr);
