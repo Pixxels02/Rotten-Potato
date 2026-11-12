@@ -191,6 +191,16 @@ body {
     background-color: #e0a92e;
 }
 
+.form-button-secondary {
+    color: var(--color-primary);
+    background-color: var(--color-card);
+    border: 2px solid var(--color-primary);
+}
+
+.form-button-secondary:hover {
+    background-color: var(--color-background);
+}
+
 .form-message {
     margin: 0;
     color: var(--color-text-light);
@@ -259,6 +269,23 @@ body {
 
 .delete-button:hover {
     background-color: #e0a92e;
+}
+
+.edit-button {
+    margin-top: var(--spacing-small);
+    margin-right: var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-medium);
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    color: var(--color-primary);
+    background-color: var(--color-card);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: var(--color-background);
 }
 
 .stats-section {

@@ -75,6 +75,14 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         ratingField.appendChild(ratingLabel);
         ratingField.appendChild(ratingButton);
 
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.className = "edit-button";
+        editButton.textContent = "Bearbeiten";
+        editButton.addEventListener("click", function () {
+            startEditEntry(movie.id);
+        });
+
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
         deleteButton.className = "delete-button";
@@ -88,6 +96,7 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         card.appendChild(watchedLabel);
         card.appendChild(ratingField);
         card.appendChild(ratingMessage);
+        card.appendChild(editButton);
         card.appendChild(deleteButton);
         movieList.appendChild(card);
     }

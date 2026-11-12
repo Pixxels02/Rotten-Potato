@@ -1,15 +1,20 @@
 // Gruppe: WI_25B_Gruppe_1
 
 const movieForm = document.getElementById("movie-form");
+const formHeading = document.getElementById("form-heading");
 const titleInput = document.getElementById("title-input");
 const typeSelect = document.getElementById("type-select");
 const genreInput = document.getElementById("genre-input");
 const episodesField = document.getElementById("episodes-field");
 const episodesInput = document.getElementById("episodes-input");
+const submitButton = document.getElementById("submit-button");
+const cancelButton = document.getElementById("cancel-button");
 const formMessage = document.getElementById("form-message");
 const titleError = document.getElementById("title-error");
 const genreError = document.getElementById("genre-error");
 const episodesError = document.getElementById("episodes-error");
+
+let editingId = null;
 
 function toggleEpisodesField() {
     if (typeSelect.value === "Serie") {
@@ -39,7 +44,7 @@ function isDuplicateTitle(title, type) {
     for (let i = 0; i < watchlist.length; i++) {
         const movie = watchlist[i];
 
-        if (movie.title.toLowerCase() === title.toLowerCase() && movie.type === type) {
+        if (movie.id !== editingId && movie.title.toLowerCase() === title.toLowerCase() && movie.type === type) {
             return true;
         }
     }
@@ -75,7 +80,33 @@ function validateForm(title, type, genre, episodes) {
 function resetMovieForm() {
     movieForm.reset();
     clearErrors();
+    editingId = null;
+    formHeading.textContent = "Neuen Titel hinzufügen";
+    submitButton.textContent = "Hinzufügen";
+    cancelButton.classList.add("hidden");
     toggleEpisodesField();
+}
+
+function startEditEntry(id) {
+    const movie = findMovieById(id);
+
+    if (movie === null) {
+        return;
+    }
+
+    resetMovieForm();
+    editingId = id;
+    titleInput.value = movie.title;
+    typeSelect.value = movie.type;
+    genreInput.value = movie.genre;
+    episodesInput.value = movie.episodes;
+    toggleEpisodesField();
+
+    formHeading.textContent = "Titel bearbeiten";
+    submitButton.textContent = "Änderungen speichern";
+    cancelButton.classList.remove("hidden");
+    formMessage.textContent = "";
+    titleInput.focus();
 }
 
 function refreshMovieList() {
@@ -98,13 +129,18 @@ function handleFormSubmit(event) {
         return;
     }
 
-    const newMovie = createMovieEntry(title, type, genre, episodes);
-    addMovieEntry(newMovie);
+    if (editingId === null) {
+        addMovieEntry(createMovieEntry(title, type, genre, episodes));
+        formMessage.textContent = title + " wurde zu eurer Watchlist hinzugefügt.";
+    } else {
+        updateMovieEntry(editingId, title, type, genre, episodes);
+        formMessage.textContent = title + " wurde geändert.";
+    }
 
     resetMovieForm();
     refreshMovieList();
-    formMessage.textContent = title + " wurde zu eurer Watchlist hinzugefügt.";
 }
 
 movieForm.addEventListener("submit", handleFormSubmit);
 typeSelect.addEventListener("change", toggleEpisodesField);
+cancelButton.addEventListener("click", resetMovieForm);

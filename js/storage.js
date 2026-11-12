@@ -26,3 +26,40 @@ function addMovieEntry(movie) {
     watchlist.push(movie);
     saveWatchlist(watchlist);
 }
+
+function findMovieById(id) {
+    const watchlist = loadWatchlist();
+
+    for (let i = 0; i < watchlist.length; i++) {
+        if (watchlist[i].id === id) {
+            return watchlist[i];
+        }
+    }
+
+    return null;
+}
+
+function updateMovieEntry(id, title, type, genre, episodes) {
+    const watchlist = loadWatchlist();
+
+    for (let i = 0; i < watchlist.length; i++) {
+        const movie = watchlist[i];
+
+        if (movie.id === id) {
+            movie.title = title;
+            movie.type = type;
+            movie.genre = genre;
+            movie.episodes = episodes;
+
+            if (type === "Film") {
+                movie.episodes = 1;
+            }
+
+            if (movie.watchedEpisodes > movie.episodes) {
+                movie.watchedEpisodes = movie.episodes;
+            }
+        }
+    }
+
+    saveWatchlist(watchlist);
+}

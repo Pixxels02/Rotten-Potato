@@ -22,7 +22,7 @@
 
     <main class="main-content">
         <section class="add-section">
-            <h2>Neuen Titel hinzufügen</h2>
+            <h2 id="form-heading">Neuen Titel hinzufügen</h2>
             <form id="movie-form" class="movie-form" novalidate>
                 <div class="form-field">
                     <label for="title-input">Titel</label>
@@ -52,6 +52,7 @@
 
                 <div class="form-actions">
                     <button type="submit" id="submit-button" class="form-button">Hinzufügen</button>
+                    <button type="button" id="cancel-button" class="form-button form-button-secondary hidden">Abbrechen</button>
                     <p id="form-message" class="form-message"></p>
                 </div>
             </form>
