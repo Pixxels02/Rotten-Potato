@@ -109,13 +109,6 @@ function startEditEntry(id) {
     titleInput.focus();
 }
 
-function refreshMovieList() {
-    // applyFilters() kommt von Jannick (filter.js)
-    if (typeof applyFilters === "function") {
-        applyFilters();
-    }
-}
-
 function handleFormSubmit(event) {
     event.preventDefault();
 
@@ -140,7 +133,3 @@ function handleFormSubmit(event) {
     resetMovieForm();
     refreshMovieList();
 }
-
-movieForm.addEventListener("submit", handleFormSubmit);
-typeSelect.addEventListener("change", toggleEpisodesField);
-cancelButton.addEventListener("click", resetMovieForm);
