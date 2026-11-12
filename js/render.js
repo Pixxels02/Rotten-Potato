@@ -38,6 +38,24 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         watchedLabel.appendChild(watchedCheckbox);
         watchedLabel.appendChild(watchedText);
 
+        const episodeField = document.createElement("div");
+        episodeField.className = "episode-field";
+
+        const episodeText = document.createElement("span");
+        episodeText.innerText = `Folge ${movie.watchedEpisodes} von ${movie.episodes}`;
+        episodeField.appendChild(episodeText);
+
+        if (movie.watchedEpisodes < movie.episodes) {
+            const episodeButton = document.createElement("button");
+            episodeButton.type = "button";
+            episodeButton.className = "episode-button";
+            episodeButton.innerText = "+1 Folge";
+            episodeButton.addEventListener("click", function () {
+                addEpisode(movie.id);
+            });
+            episodeField.appendChild(episodeButton);
+        }
+
         const ratingField = document.createElement("div");
         ratingField.className = "rating-field";
 
@@ -94,6 +112,11 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         card.appendChild(title);
         card.appendChild(info);
         card.appendChild(watchedLabel);
+
+        if (movie.type === "Serie") {
+            card.appendChild(episodeField);
+        }
+
         card.appendChild(ratingField);
         card.appendChild(ratingMessage);
         card.appendChild(editButton);
@@ -108,6 +131,25 @@ function toggleWatched(id) {
     for (let i = 0; i < watchlist.length; i++) {
         if (watchlist[i].id === id) {
             watchlist[i].watched = !watchlist[i].watched;
+        }
+    }
+
+    saveWatchlist(watchlist);
+    applyFilters();
+}
+
+function addEpisode(id) {
+    const watchlist = loadWatchlist();
+
+    for (let i = 0; i < watchlist.length; i++) {
+        const movie = watchlist[i];
+
+        if (movie.id === id && movie.watchedEpisodes < movie.episodes) {
+            movie.watchedEpisodes++;
+
+            if (movie.watchedEpisodes === movie.episodes) {
+                movie.watched = true;
+            }
         }
     }
 

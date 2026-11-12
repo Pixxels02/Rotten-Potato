@@ -338,6 +338,14 @@ body {
     background-color: var(--color-background);
 }
 
+.episode-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-small);
+    margin-top: var(--spacing-small);
+}
+
 .rating-field {
     display: flex;
     flex-wrap: wrap;
@@ -361,7 +369,8 @@ body {
     border-radius: var(--border-radius);
 }
 
-.rating-button {
+.rating-button,
+.episode-button {
     padding: var(--spacing-small) var(--spacing-medium);
     font-family: var(--font-main);
     font-size: var(--font-size-normal);
@@ -372,7 +381,8 @@ body {
     cursor: pointer;
 }
 
-.rating-button:hover {
+.rating-button:hover,
+.episode-button:hover {
     background-color: #e0a92e;
 }
 
