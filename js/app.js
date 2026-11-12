@@ -9,6 +9,8 @@ function initApp() {
     movieForm.addEventListener("submit", handleFormSubmit);
     typeSelect.addEventListener("change", toggleEpisodesField);
     cancelButton.addEventListener("click", resetMovieForm);
+
+    refreshMovieList();
 }
 
 initApp();

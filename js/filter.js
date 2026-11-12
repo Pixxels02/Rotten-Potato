@@ -142,5 +142,3 @@ filterStatusSelect.addEventListener("change", applyFilters);
 filterGenreSelect.addEventListener("change", applyFilters);
 searchInput.addEventListener("input", applyFilters);
 sortSelect.addEventListener("change", applyFilters);
-
-applyFilters();
