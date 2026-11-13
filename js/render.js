@@ -45,6 +45,15 @@ function renderMovieCards(watchlist = loadWatchlist()) {
         episodeText.innerText = `Folge ${movie.watchedEpisodes} von ${movie.episodes}`;
         episodeField.appendChild(episodeText);
 
+        const progressBar = document.createElement("div");
+        progressBar.className = "progress-bar";
+
+        const progressFill = document.createElement("div");
+        progressFill.className = "progress-fill";
+        progressFill.style.width = `${(movie.watchedEpisodes / movie.episodes) * 100}%`;
+
+        progressBar.appendChild(progressFill);
+
         if (movie.watchedEpisodes < movie.episodes) {
             const episodeButton = document.createElement("button");
             episodeButton.type = "button";
@@ -115,6 +124,7 @@ function renderMovieCards(watchlist = loadWatchlist()) {
 
         if (movie.type === "Serie") {
             card.appendChild(episodeField);
+            card.appendChild(progressBar);
         }
 
         card.appendChild(ratingField);

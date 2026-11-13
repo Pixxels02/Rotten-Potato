@@ -347,6 +347,19 @@ body {
     margin-top: var(--spacing-small);
 }
 
+.progress-bar {
+    height: 10px;
+    margin-top: var(--spacing-small);
+    background-color: #e0d6c8;
+    border-radius: var(--border-radius);
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius);
+}
+
 .rating-field {
     display: flex;
     flex-wrap: wrap;
