@@ -317,6 +317,7 @@ body {
 }
 
 .stat-value {
+    overflow-wrap: anywhere;
     font-size: var(--font-size-large);
     font-weight: bold;
     color: var(--color-primary);
