@@ -71,6 +71,7 @@ body {
 }
 
 .movie-card {
+    overflow-wrap: anywhere;
     padding: var(--spacing-medium);
     background-color: var(--color-card);
     border: 1px solid #e0d6c8;
@@ -115,12 +116,14 @@ body {
 }
 
 .random-result {
+    overflow-wrap: anywhere;
     margin: 0;
     font-size: 1.25rem;
     color: var(--color-text-light);
 }
 
 .add-section {
+    overflow-wrap: anywhere;
     margin-bottom: var(--spacing-large);
     padding: var(--spacing-large) var(--spacing-medium);
     background-color: var(--color-card);
@@ -228,6 +231,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 1 180px;
+    min-width: 0;
     gap: var(--spacing-small);
 }
 
@@ -310,6 +314,7 @@ body {
     flex-direction: column;
     align-items: center;
     flex: 1 1 120px;
+    max-width: 100%;
     padding: var(--spacing-medium);
     text-align: center;
     background-color: var(--color-background);
@@ -317,7 +322,8 @@ body {
 }
 
 .stat-value {
-    overflow-wrap: anywhere;
+    max-width: 100%;
+    overflow-wrap: break-word;
     font-size: var(--font-size-large);
     font-weight: bold;
     color: var(--color-primary);
@@ -402,7 +408,7 @@ body {
 
 .rating-message {
     margin: 0;
-    color: var(--color-primary);
+    color: var(--color-error);
 }
 
 @media (max-width: 900px) {
