@@ -235,5 +235,10 @@ function deleteMovieEntry(id) {
     }
 
     saveWatchlist(newWatchlist);
+
+    if (editingId === id) {
+        resetMovieForm();
+    }
+
     applyFilters();
 }
