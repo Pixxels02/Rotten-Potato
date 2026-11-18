@@ -54,6 +54,17 @@ function renderMovieCards(watchlist = loadWatchlist()) {
 
         progressBar.appendChild(progressFill);
 
+        if (movie.watchedEpisodes > 0) {
+            const removeEpisodeButton = document.createElement("button");
+            removeEpisodeButton.type = "button";
+            removeEpisodeButton.className = "episode-button";
+            removeEpisodeButton.textContent = "-1 Folge";
+            removeEpisodeButton.addEventListener("click", function () {
+                removeEpisode(movie.id);
+            });
+            episodeField.appendChild(removeEpisodeButton);
+        }
+
         if (movie.watchedEpisodes < movie.episodes) {
             const episodeButton = document.createElement("button");
             episodeButton.type = "button";
@@ -170,6 +181,22 @@ function addEpisode(id) {
             if (movie.watchedEpisodes === movie.episodes) {
                 movie.watched = true;
             }
+        }
+    }
+
+    saveWatchlist(watchlist);
+    applyFilters();
+}
+
+function removeEpisode(id) {
+    const watchlist = loadWatchlist();
+
+    for (let i = 0; i < watchlist.length; i++) {
+        const movie = watchlist[i];
+
+        if (movie.id === id && movie.watchedEpisodes > 0) {
+            movie.watchedEpisodes--;
+            movie.watched = false;
         }
     }
 
