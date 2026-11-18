@@ -139,8 +139,18 @@ function toggleWatched(id) {
     const watchlist = loadWatchlist();
 
     for (let i = 0; i < watchlist.length; i++) {
-        if (watchlist[i].id === id) {
-            watchlist[i].watched = !watchlist[i].watched;
+        const movie = watchlist[i];
+
+        if (movie.id === id) {
+            movie.watched = !movie.watched;
+
+            if (movie.watched) {
+                // Geschaut: alle Folgen zählen als gesehen
+                movie.watchedEpisodes = movie.episodes;
+            } else if (movie.watchedEpisodes === movie.episodes) {
+                // Haken weg nach der letzten Folge: eine Folge bleibt offen
+                movie.watchedEpisodes = movie.episodes - 1;
+            }
         }
     }
 

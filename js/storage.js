@@ -58,6 +58,11 @@ function updateMovieEntry(id, title, type, genre, episodes) {
             if (movie.watchedEpisodes > movie.episodes) {
                 movie.watchedEpisodes = movie.episodes;
             }
+
+            // Neue Folgen dazugekommen: die Serie ist nicht mehr komplett geschaut
+            if (type === "Serie" && movie.watchedEpisodes < movie.episodes) {
+                movie.watched = false;
+            }
         }
     }
 
